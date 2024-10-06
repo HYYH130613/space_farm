@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c18cqo83b7dvn"]
+
+[ext_resource type="Script" path="res://test/obj.gd" id="1_gbvqr"]
+[ext_resource type="Texture2D" uid="uid://bepgbyhbojdsi" path="res://icon.svg" id="2_3f76a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fqu3"]
+size = Vector2(64, 64)
+
+[node name="Obj" type="Area2D"]
+script = ExtResource("1_gbvqr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.492188, 0.492188)
+texture = ExtResource("2_3f76a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3fqu3")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -77.0
+offset_top = -59.0
+offset_right = 84.0
+offset_bottom = -36.0
+text = "[CLICK] TO INTERACT"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8ck3ud7yi8s8"]
+
+[ext_resource type="PackedScene" uid="uid://bjbdv7fq1kx2b" path="res://player/player.tscn" id="1_co57y"]
+[ext_resource type="PackedScene" uid="uid://brny27gppi4mg" path="res://computer/computer.tscn" id="2_njgrm"]
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_co57y")]
+position = Vector2(270, 184)
+
+[node name="Computer" parent="." instance=ExtResource("2_njgrm")]
+position = Vector2(547, 52)

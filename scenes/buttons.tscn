@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://btwxo0k77oow6"]
+
+[ext_resource type="Theme" uid="uid://bvgfdyba5om8v" path="res://themes/cold_button.tres" id="1_f01og"]
+[ext_resource type="Theme" uid="uid://cx2sq7y84itmk" path="res://themes/hot_button.tres" id="2_v2pvd"]
+
+[node name="buttons" type="Node2D"]
+
+[node name="cold_button" type="Button" parent="."]
+texture_filter = 1
+offset_right = 64.0
+offset_bottom = 64.0
+theme = ExtResource("1_f01og")
+
+[node name="hot_button" type="Button" parent="."]
+texture_filter = 1
+offset_left = 74.0
+offset_right = 138.0
+offset_bottom = 64.0
+theme = ExtResource("2_v2pvd")

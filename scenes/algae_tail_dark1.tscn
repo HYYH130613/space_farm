@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvv152ly0qqae"]
+
+[ext_resource type="Texture2D" uid="uid://moiger0mxshp" path="res://textures/algae/algae (warm-lover).png" id="1_a2l2y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mc7g1"]
+radius = 6.0
+height = 26.0
+
+[node name="algae_tail_dark1" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1.19209e-07, 4.76837e-07)
+scale = Vector2(0.894321, 0.895325)
+texture = ExtResource("1_a2l2y")
+region_enabled = true
+region_rect = Rect2(9, 97, 17, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_mc7g1")

@@ -1,0 +1,166 @@
+[gd_scene load_steps=17 format=3 uid="uid://dxiblhkk68s7x"]
+
+[ext_resource type="Script" path="res://scenes/screen.gd" id="1_4nw61"]
+[ext_resource type="Texture2D" uid="uid://cm4imv4ij4upg" path="res://textures/Metal/Metal_01_Grey_Grid_1.png" id="1_u1dnd"]
+[ext_resource type="Texture2D" uid="uid://b5o61iv8ct7k0" path="res://textures/frames/Рамочка.png" id="2_n7230"]
+[ext_resource type="FontFile" uid="uid://h1vp3c73doun" path="res://ui/fonts/m5x7.ttf" id="3_mhm2a"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4cp2h"]
+a = Vector2(-1, -2)
+b = Vector2(-0.199997, 594)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_grw4h"]
+a = Vector2(55, 0.200005)
+b = Vector2(615, 0.599998)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_iiglm"]
+a = Vector2(-2, 645)
+b = Vector2(-2, 87)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_as1ay"]
+a = Vector2(20, 0.800003)
+b = Vector2(601, 0.200012)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8usb"]
+bg_color = Color(0.305882, 0.737255, 0.317647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3d5pn"]
+bg_color = Color(0.054902, 0.231373, 0.0196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7qp6"]
+bg_color = Color(0.141075, 0.454587, 0.085556, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fneo6"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.304674, 0.738946, 0.318379, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.13796, 0.347957, 0.14245, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajfmq"]
+bg_color = Color(0.0557073, 0.23075, 0.0189427, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xstg"]
+bg_color = Color(0.147698, 0.537567, 0.209075, 0.694118)
+
+[sub_resource type="Theme" id="Theme_wukgn"]
+default_font = ExtResource("3_mhm2a")
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("3_mhm2a")
+Button/styles/disabled = SubResource("StyleBoxFlat_y8usb")
+Button/styles/focus = SubResource("StyleBoxFlat_3d5pn")
+Button/styles/hover = SubResource("StyleBoxFlat_o7qp6")
+Button/styles/normal = SubResource("StyleBoxFlat_fneo6")
+Button/styles/pressed = SubResource("StyleBoxFlat_ajfmq")
+MarginContainer/constants/margin_bottom = 15
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 15
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_4xstg")
+
+[sub_resource type="Theme" id="Theme_1avvc"]
+LineEdit/constants/minimum_character_width = 15
+
+[node name="algae_container_view" type="Node2D"]
+position = Vector2(10, -34)
+script = ExtResource("1_4nw61")
+
+[node name="inner_wall_of_algae_container" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(428.293, 460.293)
+scale = Vector2(0.368463, 0.370256)
+texture = ExtResource("1_u1dnd")
+region_enabled = true
+region_rect = Rect2(0, 0, 1500, 1500)
+
+[node name="wall_of_container" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(452.646, 450.646)
+scale = Vector2(33.2517, 33.2517)
+texture = ExtResource("2_n7230")
+region_enabled = true
+region_rect = Rect2(2.99604, 2.99964, 25.9924, 25.9744)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(68.2928, 135.293)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(99, 7)
+scale = Vector2(5, 1)
+shape = SubResource("SegmentShape2D_4cp2h")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(32, 47)
+scale = Vector2(1, 5)
+shape = SubResource("SegmentShape2D_grw4h")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(639, -45)
+scale = Vector2(4, 1)
+shape = SubResource("SegmentShape2D_iiglm")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(49, 587)
+scale = Vector2(1, 5)
+shape = SubResource("SegmentShape2D_as1ay")
+
+[node name="CanvasLayer" type="TextureRect" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 174.0
+offset_right = 732.0
+offset_bottom = 740.0
+pivot_offset = Vector2(284, 277)
+size_flags_vertical = 4
+theme = SubResource("Theme_wukgn")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Username" type="LineEdit" parent="CanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1avvc")
+theme_override_fonts/font = ExtResource("3_mhm2a")
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Username:"
+
+[node name="Password" type="LineEdit" parent="CanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mhm2a")
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Password:"
+
+[node name="Button" type="Button" parent="CanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mhm2a")
+theme_override_font_sizes/font_size = 40
+text = "SUBMIT"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
