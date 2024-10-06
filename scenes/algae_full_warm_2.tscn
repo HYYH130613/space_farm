@@ -34,7 +34,7 @@ height = 26.0
 radius = 8.0
 height = 28.0
 
-[node name="algae_full_warm2" type="Node2D"]
+[node name="algae_full_warm2" type="Node2D" groups=["algae"]]
 script = ExtResource("1_jx3j3")
 
 [node name="head" type="RigidBody2D" parent="." groups=["algae"]]

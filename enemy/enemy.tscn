@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://yf05gr0ka8nk"]
+[gd_scene load_steps=12 format=3 uid="uid://yf05gr0ka8nk"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_b502t"]
 [ext_resource type="Texture2D" uid="uid://djgqntb4cvoat" path="res://enemy/enemy sdox.png" id="2_a1q6p"]
 [ext_resource type="PackedScene" uid="uid://dh6o7lrhksb54" path="res://scenes/hurt_box.tscn" id="3_ynmbk"]
 [ext_resource type="PackedScene" uid="uid://be6336qilel5q" path="res://scenes/hit_box.tscn" id="4_5x6ox"]
+[ext_resource type="AudioStream" uid="uid://dujrlqvqppayv" path="res://audio/teleport-14639.mp3" id="5_mqqry"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3sha"]
 radius = 6.12535
@@ -32,7 +33,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_acmsr"]
 resource_name = "death"
-length = 0.9
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -56,6 +57,7 @@ _data = {
 scale = Vector2(2.44884, 2.44884)
 collision_layer = 7
 collision_mask = 6
+input_pickable = true
 script = ExtResource("1_b502t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -68,27 +70,25 @@ region_rect = Rect2(12, 10, 33, 24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
-position = Vector2(2.8585, 1.22507)
+position = Vector2(2.45014, 1.22507)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_s3sha")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_ynmbk")]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(-0.408356, 0.408357)
+position = Vector2(3.26685, 0.816713)
 shape = SubResource("RectangleShape2D_lbg6r")
 debug_color = Color(0.806234, 0.00232664, 0.994147, 0.42)
 
 [node name="HitBox" parent="." instance=ExtResource("4_5x6ox")]
-visible = false
 scale = Vector2(0.408357, 0.408357)
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" parent="HitBox" index="1"]
-position = Vector2(-0.999999, 5)
+position = Vector2(11, 2)
 shape = SubResource("RectangleShape2D_e338i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -96,7 +96,13 @@ libraries = {
 "": SubResource("AnimationLibrary_m3xal")
 }
 
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_mqqry")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="Death" to="." method="_on_death_finished"]
 
 [editable path="HurtBox"]
 [editable path="HitBox"]

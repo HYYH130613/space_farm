@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bdnl0p2xqia81"]
+[gd_scene load_steps=12 format=3 uid="uid://bjm6ld7c67t2o"]
 
 [ext_resource type="FontFile" uid="uid://cbbt8fkdrqtlj" path="res://textures/font/m5x7.ttf" id="2_rxdtn"]
 [ext_resource type="Script" path="res://scripts/canvas_layer.gd" id="3_bck15"]

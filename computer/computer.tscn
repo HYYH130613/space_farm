@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://brny27gppi4mg"]
+[gd_scene load_steps=6 format=3 uid="uid://brny27gppi4mg"]
 
 [ext_resource type="Script" path="res://computer/computer.gd" id="1_sih8t"]
 [ext_resource type="Texture2D" uid="uid://d0rl6lqc31kta" path="res://textures/Comp2.png" id="2_bcro7"]
 [ext_resource type="PackedScene" uid="uid://cf04jm61dkk0s" path="res://interaction/interaction area/interaction_area.tscn" id="2_lhbvv"]
-[ext_resource type="PackedScene" uid="uid://b84bvomnhs8k3" path="res://scenes/algae_container_view.tscn" id="4_6onuo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3kh6"]
 size = Vector2(134.156, 108.694)
@@ -34,8 +33,6 @@ shape = SubResource("RectangleShape2D_n3kh6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(346.5, 171.5)
 shape = SubResource("RectangleShape2D_b24cg")
-
-[node name="algae_container_view" parent="." instance=ExtResource("4_6onuo")]
 
 [connection signal="body_entered" from="Sprite2D/InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="Sprite2D/InteractionArea" to="." method="_on_interaction_area_body_exited"]

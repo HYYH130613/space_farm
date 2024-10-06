@@ -40,7 +40,7 @@ size = Vector2(31, 33)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j255l"]
 size = Vector2(36.09, 39.17)
 
-[node name="algae_full_cold1" type="Node2D"]
+[node name="algae_full_cold1" type="Node2D" groups=["algae"]]
 script = ExtResource("1_ydacc")
 
 [node name="head" type="RigidBody2D" parent="." groups=["algae"]]

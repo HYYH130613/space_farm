@@ -1,15 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://b84bvomnhs8k3"]
+[gd_scene load_steps=16 format=3 uid="uid://b84bvomnhs8k3"]
 
 [ext_resource type="Texture2D" uid="uid://b5o61iv8ct7k0" path="res://textures/frames/Рамочка.png" id="1_qms0c"]
 [ext_resource type="Texture2D" uid="uid://cm4imv4ij4upg" path="res://textures/Metal/Metal_01_Grey_Grid_1.png" id="1_yvdxb"]
 [ext_resource type="PackedScene" uid="uid://btwxo0k77oow6" path="res://scenes/buttons.tscn" id="3_jvabi"]
-[ext_resource type="PackedScene" uid="uid://dfrqd3aeyhexv" path="res://scenes/algae_full.tscn" id="3_x02bg"]
+[ext_resource type="PackedScene" uid="uid://b4hfp7j81i1rh" path="res://scenes/algae_full.tscn" id="3_x02bg"]
 [ext_resource type="PackedScene" uid="uid://b44swul8t34o5" path="res://scenes/algae_full_warm_2.tscn" id="5_w8q6x"]
 [ext_resource type="PackedScene" uid="uid://x3pbmqncdjpa" path="res://scenes/algae_full_cold_1.tscn" id="6_ond66"]
-[ext_resource type="PackedScene" uid="uid://bem8lbxgpfhat" path="res://utility/enemy_spawner.tscn" id="7_3f8pn"]
-[ext_resource type="PackedScene" uid="uid://lnh8xatssy4b" path="res://scenes/algae_full_cold_2.tscn" id="8_apsx4"]
+[ext_resource type="PackedScene" uid="uid://ct8wxoi3hr2tr" path="res://utility/enemy_spawner.tscn" id="7_3f8pn"]
+[ext_resource type="PackedScene" uid="uid://vix34vl5vkhl" path="res://scenes/algae_full_cold_2.tscn" id="8_apsx4"]
 [ext_resource type="FontFile" uid="uid://cbbt8fkdrqtlj" path="res://textures/font/m5x7.ttf" id="9_6yon8"]
-[ext_resource type="PackedScene" uid="uid://bdnl0p2xqia81" path="res://scenes/screen.tscn" id="10_3ri4b"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4cp2h"]
 a = Vector2(-1, -2)
@@ -78,13 +77,13 @@ shape = SubResource("SegmentShape2D_as1ay")
 [node name="buttons" parent="." instance=ExtResource("3_jvabi")]
 position = Vector2(576.293, 800.293)
 
-[node name="algae_full" parent="." groups=["algae"] instance=ExtResource("3_x02bg")]
+[node name="algae_full" parent="." instance=ExtResource("3_x02bg")]
 position = Vector2(588, 309)
 
-[node name="algae_full_warm2" parent="." groups=["algae"] instance=ExtResource("5_w8q6x")]
+[node name="algae_full_warm2" parent="." instance=ExtResource("5_w8q6x")]
 position = Vector2(222, 256)
 
-[node name="algae_full_cold1" parent="." groups=["algae"] instance=ExtResource("6_ond66")]
+[node name="algae_full_cold1" parent="." instance=ExtResource("6_ond66")]
 position = Vector2(370, 237)
 
 [node name="spawner_point" type="RigidBody2D" parent="."]
@@ -96,7 +95,7 @@ disabled = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("7_3f8pn")]
 
-[node name="algae_full_cold2" parent="." groups=["algae"] instance=ExtResource("8_apsx4")]
+[node name="algae_full_cold2" parent="." instance=ExtResource("8_apsx4")]
 position = Vector2(443, 301)
 
 [node name="Title" type="Label" parent="."]
@@ -129,14 +128,10 @@ theme_override_font_sizes/font_size = 41
 text = "Watering functions aren't available in demo!"
 metadata/_edit_use_anchors_ = true
 
-[node name="algae_full_warm3" parent="." groups=["algae"] instance=ExtResource("5_w8q6x")]
+[node name="algae_full_warm3" parent="." instance=ExtResource("5_w8q6x")]
 position = Vector2(277, 371)
 
-[node name="algae_full_cold3" parent="." groups=["algae"] instance=ExtResource("6_ond66")]
+[node name="algae_full_cold3" parent="." instance=ExtResource("6_ond66")]
 position = Vector2(503, 268)
 
-[node name="CanvasLayer" parent="." instance=ExtResource("10_3ri4b")]
-offset_left = 10.0
-offset_top = -4.0
-offset_right = 10.0
-offset_bottom = -4.0
+[editable path="EnemySpawner"]
