@@ -1,12 +1,63 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4hfp7j81i1rh"]
+[gd_scene load_steps=10 format=3 uid="uid://dfrqd3aeyhexv"]
 
 [ext_resource type="Script" path="res://scripts/draggable_algae.gd" id="1_8b74c"]
-[ext_resource type="Script" path="res://scripts/algae_warm1.gd" id="1_aegtu"]
 [ext_resource type="Texture2D" uid="uid://moiger0mxshp" path="res://textures/algae/algae (warm-lover).png" id="1_jl0ns"]
 [ext_resource type="PackedScene" uid="uid://y6fes48dum6f" path="res://scenes/algae_body_part_dark1.tscn" id="2_6nbx5"]
 [ext_resource type="PackedScene" uid="uid://d3os1bw36cpsk" path="res://scenes/algae_body_part_dark2.tscn" id="3_kkfy6"]
 [ext_resource type="PackedScene" uid="uid://dh6o7lrhksb54" path="res://scenes/hurt_box.tscn" id="3_y2i2v"]
 [ext_resource type="PackedScene" uid="uid://dvv152ly0qqae" path="res://scenes/algae_tail_dark1.tscn" id="4_10fpw"]
+
+[sub_resource type="GDScript" id="GDScript_f3hip"]
+script/source = "extends RigidBody2D
+
+var mouse_in := false
+var pressed := false
+@export var hp = 2
+
+
+
+func _process(delta: float) -> void:
+	if pressed:
+		apply_central_impulse( (((get_global_mouse_position() - global_position)) / 10))
+		
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"click\") and mouse_in:
+		pressed = true
+	if event.is_action_released(\"click\"):
+		pressed = false
+	
+func _on_mouse_entered() -> void:
+	mouse_in = true
+
+
+func _on_mouse_exited() -> void:
+	mouse_in = false
+
+
+func _on_hurt_box_4_hurt(damage: Variant) -> void:
+	hp -= damage
+	if hp <= 0:
+		queue_free()
+
+
+func _on_hurt_box_3_hurt(damage: Variant) -> void:
+	hp -= damage
+	if hp <= 0:
+		queue_free()
+
+
+
+func _on_hurt_box_2_hurt(damage: Variant) -> void:
+	hp -= damage
+	if hp <= 0:
+		queue_free()
+
+
+func _on_hurt_box_hurt(damage: Variant) -> void:
+	hp -= damage
+	if hp <= 0:
+		queue_free()
+"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gjo31"]
 radius = 9.0
@@ -21,7 +72,7 @@ script = ExtResource("1_8b74c")
 [node name="algae_head" type="RigidBody2D" parent="." groups=["algae"]]
 texture_filter = 1
 input_pickable = true
-script = ExtResource("1_aegtu")
+script = SubResource("GDScript_f3hip")
 
 [node name="HurtBox" parent="algae_head" instance=ExtResource("3_y2i2v")]
 collision_layer = 0
@@ -51,7 +102,7 @@ node_b = NodePath("../../algae_body_part_dark1")
 texture_filter = 1
 position = Vector2(0, 26)
 input_pickable = true
-script = ExtResource("1_aegtu")
+script = SubResource("GDScript_f3hip")
 
 [node name="HurtBox2" parent="algae_body_part_dark1" instance=ExtResource("3_y2i2v")]
 position = Vector2(0, -26)
@@ -71,7 +122,7 @@ node_b = NodePath("../../algae_body_part_dark2")
 texture_filter = 1
 position = Vector2(1, 51)
 input_pickable = true
-script = ExtResource("1_aegtu")
+script = SubResource("GDScript_f3hip")
 
 [node name="HurtBox3" parent="algae_body_part_dark2" instance=ExtResource("3_y2i2v")]
 position = Vector2(-10, -11)
@@ -91,7 +142,7 @@ node_b = NodePath("../../algae_tail_dark1")
 texture_filter = 1
 position = Vector2(3, 75)
 input_pickable = true
-script = ExtResource("1_aegtu")
+script = SubResource("GDScript_f3hip")
 
 [node name="HurtBox4" parent="algae_tail_dark1" instance=ExtResource("3_y2i2v")]
 position = Vector2(-1, -7)

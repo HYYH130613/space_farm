@@ -3,6 +3,7 @@ extends RigidBody2D
 var mouse_in := false
 var pressed := false
 @export var hp = 5
+@onready var crunch = $"../AudioStreamPlayer2D"
 
 
 
@@ -26,12 +27,15 @@ func _on_mouse_exited() -> void:
 
 func _on_hurt_box_4_hurt(damage: Variant) -> void:
 	hp -= damage
+	crunch.play()
 	if hp <= 0:
 		queue_free()
 
 
 func _on_hurt_box_3_hurt(damage: Variant) -> void:
 	hp -= damage
+	crunch.play()
+	
 	if hp <= 0:
 		queue_free()
 
@@ -39,10 +43,12 @@ func _on_hurt_box_3_hurt(damage: Variant) -> void:
 
 func _on_hurt_box_2_hurt(damage: Variant) -> void:
 	hp -= damage
+	crunch.play()
 	if hp <= 0:
 		queue_free()
 
 func _on_hurt_box_hurt(damage: Variant) -> void:
 	hp -= damage
+	crunch.play()
 	if hp <= 0:
 		queue_free()

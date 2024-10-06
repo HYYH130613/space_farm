@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b44swul8t34o5"]
+[gd_scene load_steps=14 format=3 uid="uid://b44swul8t34o5"]
 
 [ext_resource type="Texture2D" uid="uid://moiger0mxshp" path="res://textures/algae/algae (warm-lover).png" id="1_6axix"]
+[ext_resource type="Script" path="res://scripts/draggable_algae.gd" id="1_jx3j3"]
 [ext_resource type="Script" path="res://scripts/alga_warm2.gd" id="1_wufsc"]
 [ext_resource type="PackedScene" uid="uid://dh6o7lrhksb54" path="res://scenes/hurt_box.tscn" id="3_t7du8"]
+[ext_resource type="AudioStream" uid="uid://dojacgfftrpre" path="res://audio/tear-paper-103161.mp3" id="5_pfqf1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w1eba"]
 radius = 5.0
@@ -33,6 +35,7 @@ radius = 8.0
 height = 28.0
 
 [node name="algae_full_warm2" type="Node2D"]
+script = ExtResource("1_jx3j3")
 
 [node name="head" type="RigidBody2D" parent="." groups=["algae"]]
 texture_filter = 1
@@ -135,6 +138,9 @@ collision_mask = 4
 
 [node name="CollisionShape2D" parent="tail/HurtBox4" index="0"]
 shape = SubResource("CapsuleShape2D_f5nno")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_pfqf1")
 
 [connection signal="mouse_entered" from="head" to="head" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="head" to="head" method="_on_head_mouse_entered"]

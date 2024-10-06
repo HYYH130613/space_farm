@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxiblhkk68s7x"]
+[gd_scene load_steps=12 format=3 uid="uid://bdnl0p2xqia81"]
 
+[ext_resource type="FontFile" uid="uid://cbbt8fkdrqtlj" path="res://textures/font/m5x7.ttf" id="2_rxdtn"]
 [ext_resource type="Script" path="res://scripts/canvas_layer.gd" id="3_bck15"]
-[ext_resource type="FontFile" uid="uid://h1vp3c73doun" path="res://ui/fonts/m5x7.ttf" id="3_mhm2a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtti7"]
 bg_color = Color(0.305882, 0.737255, 0.317647, 1)
@@ -32,12 +32,11 @@ corner_radius_bottom_left = 5
 bg_color = Color(0.0557073, 0.23075, 0.0189427, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbaky"]
-bg_color = Color(0.147698, 0.537567, 0.209075, 0.694118)
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Theme" id="Theme_wukgn"]
-default_font = ExtResource("3_mhm2a")
 Button/font_sizes/font_size = 16
-Button/fonts/font = ExtResource("3_mhm2a")
+Button/fonts/font = ExtResource("2_rxdtn")
 Button/styles/disabled = SubResource("StyleBoxFlat_xtti7")
 Button/styles/focus = SubResource("StyleBoxFlat_h0xxf")
 Button/styles/hover = SubResource("StyleBoxFlat_wefou")
@@ -51,6 +50,10 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_bbaky")
 
 [sub_resource type="Theme" id="Theme_1avvc"]
 LineEdit/constants/minimum_character_width = 15
+LineEdit/font_sizes/font_size = 16
+LineEdit/fonts/font = ExtResource("2_rxdtn")
+
+[sub_resource type="Theme" id="Theme_dvqfu"]
 
 [node name="CanvasLayer" type="TextureRect"]
 script = ExtResource("3_bck15")
@@ -72,10 +75,10 @@ size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 140
+theme_override_constants/margin_top = 210
+theme_override_constants/margin_right = 140
+theme_override_constants/margin_bottom = 210
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -85,19 +88,18 @@ size_flags_vertical = 4
 [node name="Username" type="LineEdit" parent="MarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1avvc")
-theme_override_fonts/font = ExtResource("3_mhm2a")
 theme_override_font_sizes/font_size = 32
 placeholder_text = "Username:"
 
 [node name="Password" type="LineEdit" parent="MarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_mhm2a")
+theme = SubResource("Theme_dvqfu")
+theme_override_fonts/font = ExtResource("2_rxdtn")
 theme_override_font_sizes/font_size = 32
 placeholder_text = "Password:"
 
 [node name="Button" type="Button" parent="MarginContainer2/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_mhm2a")
 theme_override_font_sizes/font_size = 40
 text = "SUBMIT"
 

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var movement_speed = 60
 @export var hp = 1
-var algae
+@onready var algae = get_tree().get_nodes_in_group('algae')
 var closest_distance
 var closest_target
 var mouse_in := false
@@ -12,7 +12,6 @@ var pressed := false
 func _physics_process(delta: float):
 	print(mouse_in)
 	var enemy_position = global_position
-	algae = get_tree().get_nodes_in_group("algae")
 	closest_distance = enemy_position.distance_to(algae[0].global_position)
 	closest_target = algae[0].global_position
 	for alga in algae:
@@ -28,4 +27,3 @@ func _input(event):
 	if event is InputEventMouseButton and event.is_pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if get_viewport_rect().has_point(to_local(event.position)):
 			pressed = true
-	

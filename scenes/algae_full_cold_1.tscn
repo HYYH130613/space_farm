@@ -1,14 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://x3pbmqncdjpa"]
+[gd_scene load_steps=15 format=3 uid="uid://x3pbmqncdjpa"]
 
 [ext_resource type="Texture2D" uid="uid://bv7xikuhvc4ev" path="res://textures/algae/algae (cold-lover).png" id="1_qdwh7"]
 [ext_resource type="Script" path="res://scripts/algae_cold1.gd" id="1_wbyv6"]
+[ext_resource type="Script" path="res://scripts/draggable_algae.gd" id="1_ydacc"]
 [ext_resource type="PackedScene" uid="uid://dh6o7lrhksb54" path="res://scenes/hurt_box.tscn" id="2_v28pq"]
-
-[sub_resource type="GDScript" id="GDScript_soqgm"]
-script/source = "extends Node2D
-
-@export var hp = 5
-"
+[ext_resource type="AudioStream" uid="uid://dojacgfftrpre" path="res://audio/tear-paper-103161.mp3" id="5_psuce"]
 
 [sub_resource type="GDScript" id="GDScript_g6rwc"]
 script/source = "extends PinJoint2D
@@ -45,11 +41,10 @@ size = Vector2(31, 33)
 size = Vector2(36.09, 39.17)
 
 [node name="algae_full_cold1" type="Node2D"]
-script = SubResource("GDScript_soqgm")
+script = ExtResource("1_ydacc")
 
 [node name="head" type="RigidBody2D" parent="." groups=["algae"]]
 position = Vector2(0, 28)
-collision_layer = 2
 input_pickable = true
 script = ExtResource("1_wbyv6")
 
@@ -82,7 +77,6 @@ debug_color = Color(0.717615, 0.323963, 0.891303, 0.42)
 
 [node name="body1" type="RigidBody2D" parent="." groups=["algae"]]
 position = Vector2(-3, 86)
-collision_layer = 2
 input_pickable = true
 script = ExtResource("1_wbyv6")
 
@@ -115,7 +109,6 @@ script = SubResource("GDScript_g6rwc")
 
 [node name="body2" type="RigidBody2D" parent="." groups=["algae"]]
 position = Vector2(0, 138)
-collision_layer = 3
 input_pickable = true
 script = ExtResource("1_wbyv6")
 
@@ -147,7 +140,6 @@ script = SubResource("GDScript_g6rwc")
 
 [node name="tail" type="RigidBody2D" parent="." groups=["algae"]]
 position = Vector2(2, 183)
-collision_layer = 3
 input_pickable = true
 script = ExtResource("1_wbyv6")
 
@@ -170,6 +162,9 @@ collision_mask = 4
 
 [node name="CollisionShape2D" parent="tail/HurtBox4" index="0"]
 shape = SubResource("RectangleShape2D_j255l")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_psuce")
 
 [connection signal="mouse_entered" from="head" to="head" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="head" to="head" method="_on_mouse_exited"]
