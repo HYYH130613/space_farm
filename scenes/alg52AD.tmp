@@ -1,0 +1,110 @@
+[gd_scene load_steps=16 format=3 uid="uid://b84bvomnhs8k3"]
+
+[ext_resource type="Texture2D" uid="uid://b5o61iv8ct7k0" path="res://textures/frames/Рамочка.png" id="1_qms0c"]
+[ext_resource type="Texture2D" uid="uid://cm4imv4ij4upg" path="res://textures/Metal/Metal_01_Grey_Grid_1.png" id="1_yvdxb"]
+[ext_resource type="PackedScene" uid="uid://btwxo0k77oow6" path="res://scenes/buttons.tscn" id="3_jvabi"]
+[ext_resource type="PackedScene" uid="uid://b4hfp7j81i1rh" path="res://scenes/algae_full.tscn" id="3_x02bg"]
+[ext_resource type="PackedScene" uid="uid://b44swul8t34o5" path="res://scenes/algae_full_warm_2.tscn" id="5_w8q6x"]
+[ext_resource type="PackedScene" uid="uid://x3pbmqncdjpa" path="res://scenes/algae_full_cold_1.tscn" id="6_ond66"]
+[ext_resource type="PackedScene" uid="uid://ct8wxoi3hr2tr" path="res://utility/enemy_spawner.tscn" id="7_3f8pn"]
+[ext_resource type="PackedScene" uid="uid://vix34vl5vkhl" path="res://scenes/algae_full_cold_2.tscn" id="8_apsx4"]
+[ext_resource type="FontFile" uid="uid://cbbt8fkdrqtlj" path="res://textures/font/m5x7.ttf" id="9_6yon8"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4cp2h"]
+a = Vector2(-1, -2)
+b = Vector2(-0.199997, 594)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_grw4h"]
+a = Vector2(55, 0.200005)
+b = Vector2(615, 0.599998)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_iiglm"]
+a = Vector2(-2, 645)
+b = Vector2(-2, 87)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_as1ay"]
+a = Vector2(20, 0.800003)
+b = Vector2(601, 0.200012)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1iffi"]
+b = Vector2(0, 1)
+
+[sub_resource type="GDScript" id="GDScript_hs8q0"]
+
+[node name="algae_container_view" type="Node2D"]
+
+[node name="inner_wall_of_algae_container" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(428.293, 460.293)
+scale = Vector2(0.368463, 0.370256)
+texture = ExtResource("1_yvdxb")
+region_enabled = true
+region_rect = Rect2(0, 0, 1500, 1500)
+
+[node name="wall_of_container" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(452.646, 450.646)
+scale = Vector2(33.2517, 33.2517)
+texture = ExtResource("1_qms0c")
+region_enabled = true
+region_rect = Rect2(2.99604, 2.99964, 25.9924, 25.9744)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(68.2928, 135.293)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(99, 7)
+scale = Vector2(5, 1)
+shape = SubResource("SegmentShape2D_4cp2h")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(32, 47)
+scale = Vector2(1, 5)
+shape = SubResource("SegmentShape2D_grw4h")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(639, -45)
+scale = Vector2(4, 1)
+shape = SubResource("SegmentShape2D_iiglm")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(49, 587)
+scale = Vector2(1, 5)
+shape = SubResource("SegmentShape2D_as1ay")
+
+[node name="buttons" parent="." instance=ExtResource("3_jvabi")]
+position = Vector2(576.293, 800.293)
+
+[node name="algae_full" parent="." instance=ExtResource("3_x02bg")]
+position = Vector2(588, 309)
+
+[node name="algae_full_warm2" parent="." instance=ExtResource("5_w8q6x")]
+position = Vector2(222, 256)
+
+[node name="algae_full_cold1" parent="." instance=ExtResource("6_ond66")]
+position = Vector2(370, 237)
+
+[node name="spawner_point" type="RigidBody2D" parent="."]
+position = Vector2(451, 453)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spawner_point"]
+shape = SubResource("SegmentShape2D_1iffi")
+disabled = true
+
+[node name="EnemySpawner" parent="." instance=ExtResource("7_3f8pn")]
+
+[node name="algae_full_cold2" parent="." instance=ExtResource("8_apsx4")]
+position = Vector2(443, 301)
+
+[node name="Score" type="Label" parent="."]
+texture_filter = 1
+offset_left = 449.0
+offset_top = 72.0
+offset_right = 715.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.423379, 0.165235, 0.353913, 1)
+theme_override_fonts/font = ExtResource("9_6yon8")
+theme_override_font_sizes/font_size = 60
+script = SubResource("GDScript_hs8q0")

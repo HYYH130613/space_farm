@@ -1,0 +1,106 @@
+[gd_scene load_steps=7 format=3 uid="uid://x3pbmqncdjpa"]
+
+[ext_resource type="Script" path="res://scripts/algae_head.gd" id="1_3xo15"]
+[ext_resource type="Texture2D" uid="uid://bv7xikuhvc4ev" path="res://textures/algae/algae (cold-lover).png" id="1_qdwh7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mr4xj"]
+size = Vector2(51, 55.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8o3o"]
+size = Vector2(48, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0eux"]
+size = Vector2(40, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cuq20"]
+size = Vector2(40, 40)
+
+[node name="algae_full_cold1" type="Node2D"]
+
+[node name="head" type="RigidBody2D" parent="." groups=["algae"]]
+input_pickable = true
+script = ExtResource("1_3xo15")
+
+[node name="Sprite2D" type="Sprite2D" parent="head"]
+texture_filter = 1
+position = Vector2(9.53674e-07, 30)
+scale = Vector2(1.98, 1.98)
+texture = ExtResource("1_qdwh7")
+region_enabled = true
+region_rect = Rect2(68, 0, 25, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="head"]
+position = Vector2(0.5, 27.25)
+shape = SubResource("RectangleShape2D_mr4xj")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, 57)
+node_a = NodePath("../head")
+node_b = NodePath("../body1")
+
+[node name="body1" type="RigidBody2D" parent="."]
+position = Vector2(-3, 86)
+input_pickable = true
+script = ExtResource("1_3xo15")
+
+[node name="Sprite2D" type="Sprite2D" parent="body1"]
+texture_filter = 1
+scale = Vector2(1.84615, 1.84615)
+texture = ExtResource("1_qdwh7")
+region_enabled = true
+region_rect = Rect2(66, 32, 26, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body1"]
+shape = SubResource("RectangleShape2D_l8o3o")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(0, 116)
+node_a = NodePath("../body1")
+node_b = NodePath("../body2")
+
+[node name="body2" type="RigidBody2D" parent="."]
+position = Vector2(0, 138)
+input_pickable = true
+script = ExtResource("1_3xo15")
+
+[node name="Sprite2D" type="Sprite2D" parent="body2"]
+texture_filter = 1
+scale = Vector2(1.60417, 1.70833)
+texture = ExtResource("1_qdwh7")
+region_enabled = true
+region_rect = Rect2(69, 65, 24, 31)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body2"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_x0eux")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(0, 163)
+node_a = NodePath("../body2")
+node_b = NodePath("../tail")
+
+[node name="tail" type="RigidBody2D" parent="."]
+position = Vector2(-10, 170)
+input_pickable = true
+script = ExtResource("1_3xo15")
+
+[node name="Sprite2D" type="Sprite2D" parent="tail"]
+texture_filter = 1
+position = Vector2(12, 8)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("1_qdwh7")
+region_enabled = true
+region_rect = Rect2(69, 95, 24, 27)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tail"]
+position = Vector2(10, 13)
+shape = SubResource("RectangleShape2D_cuq20")
+
+[connection signal="mouse_entered" from="head" to="head" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="head" to="head" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="body1" to="body1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="body1" to="body1" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="body2" to="body2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="body2" to="body2" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="tail" to="tail" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="tail" to="tail" method="_on_mouse_exited"]

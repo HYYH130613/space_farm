@@ -1,0 +1,15 @@
+res://scenes/canvas_layer.gd
+res://scenes/algae_container_view.tscn
+res://themes/cold_button.tres
+res://themes/hot_button.tres
+res://computer/computer.tscn
+res://world/world.tscn
+res://scenes/screen.tscn
+res://healthbar/healthbar.tscn
+res://scenes/screen_2.gd
+res://scenes/screen2.tscn
+res://computer/computer.gd
+res://interaction/InteractionManager.tscn
+res://interaction/interaction_manager.gd
+res://scripts/game_manager.gd
+res://scripts/screen_2.gd

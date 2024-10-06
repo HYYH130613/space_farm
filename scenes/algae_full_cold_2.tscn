@@ -1,0 +1,167 @@
+[gd_scene load_steps=12 format=3 uid="uid://vix34vl5vkhl"]
+
+[ext_resource type="Script" path="res://scripts/algae_cold2.gd" id="1_c4h0l"]
+[ext_resource type="Texture2D" uid="uid://bv7xikuhvc4ev" path="res://textures/algae/algae (cold-lover).png" id="1_lyxy4"]
+[ext_resource type="PackedScene" uid="uid://dh6o7lrhksb54" path="res://scenes/hurt_box.tscn" id="3_lbtbu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7m7r"]
+radius = 15.0
+height = 40.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyk8l"]
+size = Vector2(39.295, 44.2)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j6dea"]
+radius = 9.88593
+height = 25.8555
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6mll"]
+size = Vector2(22.35, 26.65)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ge8r2"]
+radius = 9.12547
+height = 25.8555
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvu3r"]
+size = Vector2(21.585, 28.295)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xoksy"]
+radius = 8.24999
+height = 23.8334
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_be05i"]
+size = Vector2(19.16, 26.32)
+
+[node name="algae_full_cold2" type="Node2D"]
+position = Vector2(0, 1)
+
+[node name="head" type="RigidBody2D" parent="." groups=["algae"]]
+position = Vector2(-3, 21)
+collision_mask = 3
+input_pickable = true
+script = ExtResource("1_c4h0l")
+
+[node name="head" type="Sprite2D" parent="head"]
+scale = Vector2(1.46154, 1.46154)
+texture = ExtResource("1_lyxy4")
+region_enabled = true
+region_rect = Rect2(2, 33, 26, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="head"]
+shape = SubResource("CapsuleShape2D_s7m7r")
+
+[node name="HurtBox" parent="head" instance=ExtResource("3_lbtbu")]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="head/HurtBox" index="0"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_yyk8l")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="head"]
+position = Vector2(2, 18)
+node_a = NodePath("..")
+node_b = NodePath("../../body")
+
+[node name="body" type="RigidBody2D" parent="." groups=["algae"]]
+position = Vector2(-1, 57)
+scale = Vector2(1.315, 1.315)
+collision_mask = 3
+input_pickable = true
+script = ExtResource("1_c4h0l")
+
+[node name="sprite2d" type="Sprite2D" parent="body"]
+position = Vector2(1.90735e-06, -0.380233)
+scale = Vector2(0.95057, 1.03929)
+texture = ExtResource("1_lyxy4")
+region_enabled = true
+region_rect = Rect2(5, 66, 24, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
+position = Vector2(0, -1.52092)
+shape = SubResource("CapsuleShape2D_j6dea")
+
+[node name="HurtBox2" parent="body" instance=ExtResource("3_lbtbu")]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="body/HurtBox2" index="0"]
+position = Vector2(0, -2.28137)
+shape = SubResource("RectangleShape2D_t6mll")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="body"]
+position = Vector2(2.90091e-06, 10.6464)
+node_a = NodePath("..")
+node_b = NodePath("../../body2")
+
+[node name="body2" type="RigidBody2D" parent="." groups=["algae"]]
+position = Vector2(0, 87)
+scale = Vector2(1.315, 1.315)
+input_pickable = true
+script = ExtResource("1_c4h0l")
+
+[node name="sprite2d" type="Sprite2D" parent="body2"]
+position = Vector2(-0.76045, -1.90114)
+scale = Vector2(1, 1.14068)
+texture = ExtResource("1_lyxy4")
+region_enabled = true
+region_rect = Rect2(4, 1, 25, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body2"]
+position = Vector2(-0.760456, -0.760456)
+shape = SubResource("CapsuleShape2D_ge8r2")
+
+[node name="HurtBox3" parent="body2" instance=ExtResource("3_lbtbu")]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="body2/HurtBox3" index="0"]
+position = Vector2(0, -0.760456)
+shape = SubResource("RectangleShape2D_wvu3r")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="body2"]
+position = Vector2(5.80182e-06, 10.6464)
+node_a = NodePath("..")
+node_b = NodePath("../../tail")
+
+[node name="tail" type="RigidBody2D" parent="." groups=["algae"]]
+position = Vector2(7.62939e-06, 114)
+scale = Vector2(1.09091, 1.09091)
+input_pickable = true
+script = ExtResource("1_c4h0l")
+
+[node name="tail" type="Sprite2D" parent="tail"]
+position = Vector2(-6.99361e-06, -0.916667)
+texture = ExtResource("1_lyxy4")
+region_enabled = true
+region_rect = Rect2(6, 97, 22, 26)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tail"]
+position = Vector2(0, -0.916674)
+shape = SubResource("CapsuleShape2D_xoksy")
+
+[node name="HurtBox4" parent="tail" instance=ExtResource("3_lbtbu")]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="tail/HurtBox4" index="0"]
+position = Vector2(-6.99361e-06, -0.916667)
+shape = SubResource("RectangleShape2D_be05i")
+
+[connection signal="mouse_entered" from="head" to="head" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="head" to="head" method="_on_mouse_exited"]
+[connection signal="hurt" from="head/HurtBox" to="head" method="_on_hurt_box_hurt"]
+[connection signal="mouse_entered" from="body" to="head" method="_on_body_mouse_entered"]
+[connection signal="mouse_exited" from="body" to="head" method="_on_body_mouse_exited"]
+[connection signal="hurt" from="body/HurtBox2" to="body" method="_on_hurt_box_2_hurt"]
+[connection signal="mouse_entered" from="body2" to="head" method="_on_body_2_mouse_entered"]
+[connection signal="mouse_exited" from="body2" to="head" method="_on_body_2_mouse_exited"]
+[connection signal="hurt" from="body2/HurtBox3" to="body2" method="_on_hurt_box_3_hurt"]
+[connection signal="mouse_entered" from="tail" to="head" method="_on_tail_mouse_entered"]
+[connection signal="mouse_exited" from="tail" to="head" method="_on_tail_mouse_exited"]
+[connection signal="hurt" from="tail/HurtBox4" to="tail" method="_on_hurt_box_4_hurt"]
+
+[editable path="head/HurtBox"]
+[editable path="body/HurtBox2"]
+[editable path="body2/HurtBox3"]
+[editable path="tail/HurtBox4"]

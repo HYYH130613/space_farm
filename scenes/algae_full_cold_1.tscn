@@ -1,47 +1,90 @@
-[gd_scene load_steps=7 format=3 uid="uid://x3pbmqncdjpa"]
+[gd_scene load_steps=14 format=3 uid="uid://x3pbmqncdjpa"]
 
-[ext_resource type="Script" path="res://scripts/algae_head.gd" id="1_3xo15"]
 [ext_resource type="Texture2D" uid="uid://bv7xikuhvc4ev" path="res://textures/algae/algae (cold-lover).png" id="1_qdwh7"]
+[ext_resource type="Script" path="res://scripts/algae_cold1.gd" id="1_wbyv6"]
+[ext_resource type="PackedScene" uid="uid://dh6o7lrhksb54" path="res://scenes/hurt_box.tscn" id="2_v28pq"]
+
+[sub_resource type="GDScript" id="GDScript_soqgm"]
+script/source = "extends Node2D
+
+@export var hp = 5
+"
+
+[sub_resource type="GDScript" id="GDScript_g6rwc"]
+script/source = "extends PinJoint2D
+
+func _process(delta: float) -> void:
+	print(node_a)
+	print(NodePath(node_a))
+	if node_a == NodePath('node_a') and node_b == NodePath('node_b'):
+		pass
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mr4xj"]
-size = Vector2(51, 55.5)
+size = Vector2(36, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ymwc"]
+size = Vector2(44.5, 55.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8o3o"]
-size = Vector2(48, 58)
+size = Vector2(37, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibyqa"]
+size = Vector2(43.5, 55.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x0eux"]
-size = Vector2(40, 46)
+size = Vector2(30, 41)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ej3p"]
+size = Vector2(35.065, 45.945)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cuq20"]
-size = Vector2(40, 40)
+size = Vector2(31, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j255l"]
+size = Vector2(36.09, 39.17)
 
 [node name="algae_full_cold1" type="Node2D"]
+script = SubResource("GDScript_soqgm")
 
 [node name="head" type="RigidBody2D" parent="." groups=["algae"]]
+position = Vector2(0, 28)
+collision_layer = 2
 input_pickable = true
-script = ExtResource("1_3xo15")
+script = ExtResource("1_wbyv6")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="head"]
+position = Vector2(0, 29)
+node_a = NodePath("..")
+node_b = NodePath("../../body1")
+script = SubResource("GDScript_g6rwc")
 
 [node name="Sprite2D" type="Sprite2D" parent="head"]
 texture_filter = 1
-position = Vector2(9.53674e-07, 30)
+position = Vector2(9.53674e-07, 1.90735e-06)
 scale = Vector2(1.98, 1.98)
 texture = ExtResource("1_qdwh7")
 region_enabled = true
 region_rect = Rect2(68, 0, 25, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="head"]
-position = Vector2(0.5, 27.25)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_mr4xj")
 
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
-position = Vector2(0, 57)
-node_a = NodePath("../head")
-node_b = NodePath("../body1")
+[node name="HurtBox" parent="head" instance=ExtResource("2_v28pq")]
+position = Vector2(0, -1)
+collision_layer = 0
+collision_mask = 4
 
-[node name="body1" type="RigidBody2D" parent="."]
+[node name="CollisionShape2D" parent="head/HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_0ymwc")
+debug_color = Color(0.717615, 0.323963, 0.891303, 0.42)
+
+[node name="body1" type="RigidBody2D" parent="." groups=["algae"]]
 position = Vector2(-3, 86)
+collision_layer = 2
 input_pickable = true
-script = ExtResource("1_3xo15")
+script = ExtResource("1_wbyv6")
 
 [node name="Sprite2D" type="Sprite2D" parent="body1"]
 texture_filter = 1
@@ -51,17 +94,30 @@ region_enabled = true
 region_rect = Rect2(66, 32, 26, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body1"]
+position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_l8o3o")
 
-[node name="PinJoint2D2" type="PinJoint2D" parent="."]
-position = Vector2(0, 116)
-node_a = NodePath("../body1")
-node_b = NodePath("../body2")
+[node name="HurtBox2" parent="body1" instance=ExtResource("2_v28pq")]
+position = Vector2(1, 0)
+collision_layer = 0
+collision_mask = 4
 
-[node name="body2" type="RigidBody2D" parent="."]
+[node name="CollisionShape2D" parent="body1/HurtBox2" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ibyqa")
+debug_color = Color(0.625259, 0.377197, 0.946873, 0.42)
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="body1"]
+position = Vector2(3, 30)
+node_a = NodePath("..")
+node_b = NodePath("../../body2")
+script = SubResource("GDScript_g6rwc")
+
+[node name="body2" type="RigidBody2D" parent="." groups=["algae"]]
 position = Vector2(0, 138)
+collision_layer = 3
 input_pickable = true
-script = ExtResource("1_3xo15")
+script = ExtResource("1_wbyv6")
 
 [node name="Sprite2D" type="Sprite2D" parent="body2"]
 texture_filter = 1
@@ -71,36 +127,64 @@ region_enabled = true
 region_rect = Rect2(69, 65, 24, 31)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body2"]
-position = Vector2(0, 1)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_x0eux")
 
-[node name="PinJoint2D3" type="PinJoint2D" parent="."]
-position = Vector2(0, 163)
-node_a = NodePath("../body2")
-node_b = NodePath("../tail")
+[node name="HurtBox3" parent="body2" instance=ExtResource("2_v28pq")]
+position = Vector2(0, -2)
+collision_layer = 0
+collision_mask = 4
 
-[node name="tail" type="RigidBody2D" parent="."]
-position = Vector2(-10, 170)
+[node name="CollisionShape2D" parent="body2/HurtBox3" index="0"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_1ej3p")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="body2"]
+position = Vector2(0, 25)
+node_a = NodePath("..")
+node_b = NodePath("../../tail")
+script = SubResource("GDScript_g6rwc")
+
+[node name="tail" type="RigidBody2D" parent="." groups=["algae"]]
+position = Vector2(2, 183)
+collision_layer = 3
 input_pickable = true
-script = ExtResource("1_3xo15")
+script = ExtResource("1_wbyv6")
 
 [node name="Sprite2D" type="Sprite2D" parent="tail"]
 texture_filter = 1
-position = Vector2(12, 8)
+position = Vector2(9.53674e-07, 4.76837e-07)
 scale = Vector2(1.75, 1.75)
 texture = ExtResource("1_qdwh7")
 region_enabled = true
 region_rect = Rect2(69, 95, 24, 27)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tail"]
-position = Vector2(10, 13)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_cuq20")
+
+[node name="HurtBox4" parent="tail" instance=ExtResource("2_v28pq")]
+position = Vector2(0, 1)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="tail/HurtBox4" index="0"]
+shape = SubResource("RectangleShape2D_j255l")
 
 [connection signal="mouse_entered" from="head" to="head" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="head" to="head" method="_on_mouse_exited"]
+[connection signal="hurt" from="head/HurtBox" to="head" method="_on_hurt_box_hurt"]
 [connection signal="mouse_entered" from="body1" to="body1" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="body1" to="body1" method="_on_mouse_exited"]
+[connection signal="hurt" from="body1/HurtBox2" to="body1" method="_on_hurt_box_2_hurt"]
 [connection signal="mouse_entered" from="body2" to="body2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="body2" to="body2" method="_on_mouse_exited"]
+[connection signal="hurt" from="body2/HurtBox3" to="body2" method="_on_hurt_box_3_hurt"]
 [connection signal="mouse_entered" from="tail" to="tail" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="tail" to="tail" method="_on_mouse_exited"]
+[connection signal="hurt" from="tail/HurtBox4" to="tail" method="_on_hurt_box_4_hurt"]
+
+[editable path="head/HurtBox"]
+[editable path="body1/HurtBox2"]
+[editable path="body2/HurtBox3"]
+[editable path="tail/HurtBox4"]

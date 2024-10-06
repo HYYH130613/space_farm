@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://yf05gr0ka8nk"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_b502t"]
+[ext_resource type="Texture2D" uid="uid://nvtx6bv7j678" path="res://enemy/Alien.png" id="2_2xux0"]
+
+[node name="enemy" type="CharacterBody2D"]
+scale = Vector2(2.44884, 2.44884)
+script = ExtResource("1_b502t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.408357, 0)
+scale = Vector2(0.704178, 0.704178)
+texture = ExtResource("2_2xux0")

@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2k45vr1i8ujj"]
+
+[ext_resource type="Script" path="res://scripts/screen_2.gd" id="1_ywwc2"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="2_7jaxy"]
+[ext_resource type="PackedScene" uid="uid://btwxo0k77oow6" path="res://scenes/buttons.tscn" id="3_up1n3"]
+[ext_resource type="PackedScene" uid="uid://b4hfp7j81i1rh" path="res://scenes/algae_full.tscn" id="4_tb63r"]
+[ext_resource type="PackedScene" uid="uid://b44swul8t34o5" path="res://scenes/algae_full_warm_2.tscn" id="5_qinut"]
+[ext_resource type="PackedScene" uid="uid://x3pbmqncdjpa" path="res://scenes/algae_full_cold_1.tscn" id="6_l68i1"]
+[ext_resource type="PackedScene" uid="uid://yf05gr0ka8nk" path="res://enemy/enemy.tscn" id="7_a5se6"]
+
+[node name="Screen2" type="TextureRect"]
+script = ExtResource("1_ywwc2")
+
+[node name="Button" type="Button" parent="."]
+z_index = 3
+layout_mode = 0
+offset_left = 357.0
+offset_top = 389.0
+offset_right = 511.0
+offset_bottom = 474.0
+text = "START"
+script = ExtResource("2_7jaxy")
+
+[node name="buttons" parent="." instance=ExtResource("3_up1n3")]
+position = Vector2(576.293, 800.293)
+
+[node name="algae_full" parent="." instance=ExtResource("4_tb63r")]
+position = Vector2(212.293, 391.293)
+
+[node name="algae_full_warm2" parent="." instance=ExtResource("5_qinut")]
+position = Vector2(480.293, 332.293)
+
+[node name="algae_full_cold1" parent="." instance=ExtResource("6_l68i1")]
+position = Vector2(384, 259)
+
+[node name="enemy" parent="." instance=ExtResource("7_a5se6")]
+position = Vector2(647, 362)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

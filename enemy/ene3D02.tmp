@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://yf05gr0ka8nk"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_b502t"]
+[ext_resource type="Texture2D" uid="uid://nvtx6bv7j678" path="res://enemy/Alien.png" id="2_2xux0"]
+[ext_resource type="PackedScene" uid="uid://dh6o7lrhksb54" path="res://scenes/hurt_box.tscn" id="3_ynmbk"]
+[ext_resource type="PackedScene" uid="uid://be6336qilel5q" path="res://scenes/hit_box.tscn" id="4_5x6ox"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3sha"]
+radius = 4.49192
+height = 14.7008
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbg6r"]
+size = Vector2(23.6847, 18.9838)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e338i"]
+size = Vector2(37.5, 26.5)
+
+[node name="enemy" type="CharacterBody2D"]
+scale = Vector2(2.44884, 2.44884)
+script = ExtResource("1_b502t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.408357, 0)
+scale = Vector2(0.704178, 0.704178)
+texture = ExtResource("2_2xux0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.408357, 2.04178)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_s3sha")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_ynmbk")]
+collision_layer = 0
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(-0.408356, 0.408357)
+shape = SubResource("RectangleShape2D_lbg6r")
+debug_color = Color(0.806234, 0.00232664, 0.994147, 0.42)
+
+[node name="HitBox" parent="." instance=ExtResource("4_5x6ox")]
+scale = Vector2(0.408357, 0.408357)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="HitBox" index="1"]
+position = Vector2(-1, 4)
+shape = SubResource("RectangleShape2D_e338i")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

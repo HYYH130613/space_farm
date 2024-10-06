@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4hfp7j81i1rh"]
+
+[ext_resource type="Script" path="res://scripts/draggable_algae.gd" id="1_8b74c"]
+[ext_resource type="Script" path="res://scripts/algae_head.gd" id="1_aegtu"]
+[ext_resource type="Texture2D" uid="uid://moiger0mxshp" path="res://textures/algae/algae (warm-lover).png" id="1_jl0ns"]
+[ext_resource type="PackedScene" uid="uid://y6fes48dum6f" path="res://scenes/algae_body_part_dark1.tscn" id="2_6nbx5"]
+[ext_resource type="PackedScene" uid="uid://d3os1bw36cpsk" path="res://scenes/algae_body_part_dark2.tscn" id="3_kkfy6"]
+[ext_resource type="PackedScene" uid="uid://dvv152ly0qqae" path="res://scenes/algae_tail_dark1.tscn" id="4_10fpw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3krng"]
+size = Vector2(13.8711, 23.75)
+
+[node name="algae_fill_warm2" type="Node2D"]
+position = Vector2(344, 151)
+script = ExtResource("1_8b74c")
+
+[node name="algae_head" type="RigidBody2D" parent="." groups=["algae"]]
+texture_filter = 1
+input_pickable = true
+script = ExtResource("1_aegtu")
+
+[node name="algae_holder" type="Sprite2D" parent="algae_head"]
+texture_filter = 1
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(1.32616, 0.99908)
+texture = ExtResource("1_jl0ns")
+region_enabled = true
+region_rect = Rect2(8, 1, 14, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="algae_head"]
+shape = SubResource("RectangleShape2D_3krng")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, 11)
+node_a = NodePath("../algae_head")
+node_b = NodePath("../algae_body_part_dark1")
+
+[node name="algae_body_part_dark1" parent="." instance=ExtResource("2_6nbx5")]
+texture_filter = 1
+position = Vector2(0, 26)
+input_pickable = true
+script = ExtResource("1_aegtu")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(0, 40)
+node_a = NodePath("../algae_body_part_dark1")
+node_b = NodePath("../algae_body_part_dark2")
+
+[node name="algae_body_part_dark2" parent="." instance=ExtResource("3_kkfy6")]
+texture_filter = 1
+position = Vector2(1, 51)
+input_pickable = true
+script = ExtResource("1_aegtu")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(0, 62)
+node_a = NodePath("../algae_body_part_dark2")
+node_b = NodePath("../algae_tail_dark1")
+
+[node name="algae_tail_dark1" parent="." instance=ExtResource("4_10fpw")]
+texture_filter = 1
+position = Vector2(3, 75)
+input_pickable = true
+script = ExtResource("1_aegtu")
+
+[connection signal="mouse_entered" from="algae_head" to="algae_head" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="algae_head" to="algae_head" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="algae_body_part_dark1" to="algae_body_part_dark1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="algae_body_part_dark1" to="algae_body_part_dark1" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="algae_body_part_dark2" to="algae_body_part_dark2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="algae_body_part_dark2" to="algae_body_part_dark2" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="algae_tail_dark1" to="algae_tail_dark1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="algae_tail_dark1" to="algae_tail_dark1" method="_on_mouse_exited"]
